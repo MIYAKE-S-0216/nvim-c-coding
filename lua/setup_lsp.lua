@@ -8,7 +8,7 @@ require("mason-lspconfig").setup({
 		--"pylsp",				-- Python の LSP サーバー
 		"pyright",				-- Python の LSP サーバー
 		"lua_ls",				-- Lua の LSP サーバー
-		"markdon_oxide",		-- Markdown の LSP サーバー
+		"marksman",				-- Markdown の LSP サーバー
 	},
 })
 
@@ -63,9 +63,9 @@ lspconfig.lua_ls.setup {
 	capabilities = capabilities,
 }
 
--- Lua LSP の設定
-lspconfig.markdon_oxide.setup {
-	cmd = { "markdon_oxide" },	-- Markdown LSP のパスを指定
+-- Markdown LSP の設定
+lspconfig.marksman.setup {
+	-- cmd = { "marksman" },	-- Markdown LSP のパスを指定
 	root_dir = lspconfig.util.root_pattern(".md"),	-- プロジェクトのルートディレクトリを見つけるためのパターン
 	filetypes = { "markdown" },	-- Markdown のファイルタイプ
 	capabilities = capabilities,
@@ -73,11 +73,12 @@ lspconfig.markdon_oxide.setup {
 
 -- LSP の補完機能の設定
 local cmp = require("cmp")
+local luasnip = require("luasnip")
 cmp.setup({
 	snippet = {	-- スニペットの設定
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+			require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
 			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 			-- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
@@ -94,6 +95,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },	-- nvim-lspconfig で設定した LSP サーバーを使用
 		{ name = "vsnip" },		-- vim-vsnip のスニペットを使用
+		--{ name = "luasnip" },	-- LuaSnip のスニペットを使用
 		{ name = "buffer" },	-- バッファ内の単語を補完
 		{ name = "path" },		-- パスの補完
 		{ name = "cmdline" },	-- コマンドラインの補完
@@ -104,9 +106,40 @@ cmp.setup({
 		["<C-d>"]		= cmp.mapping.scroll_docs(-4),				-- ドキュメントをスクロール
 		["<C-f>"]		= cmp.mapping.scroll_docs(4),				-- ドキュメントをスクロール
 		["<C-z>"]		= cmp.mapping.complete(),					-- 補完を実行
-		--["<C-e>"]		= cmp.mapping.close(),						-- 補完を閉じる
-		["<Tab>"]		= cmp.mapping.confirm({ select = true }),	-- 補完を確定
-		["<Esc>"]		= cmp.mapping.close(),						-- 補完を
+		["<Esc>"]		= cmp.mapping.close(),						-- 補完を終了
+		['<CR>']		= cmp.mapping(function(fallback)
+			if cmp.visible() then
+				if luasnip.expandable() then
+					luasnip.expand()
+				else
+					cmp.confirm({
+						select = true,
+					})
+				end
+			else
+				fallback()
+			end
+		end),
+
+		["<Tab>"]		= cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.locally_jumpable(1) then
+				luasnip.jump(1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+
+		["<S-Tab>"]		= cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.locally_jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	},
 })
 

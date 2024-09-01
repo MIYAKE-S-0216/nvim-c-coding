@@ -298,5 +298,19 @@ return {
 				},
 			})
 		end
-	}
+	},
+	{
+		"L3MON4D3/LuaSnip",		-- LuaSnip : Lua でスニペットを使用
+		version = "v2.*",
+		config = function ()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end
+	},
+	{
+		"rafamadriz/friendly-snippets",
+		dependencies = 
+		{
+			"L3MON4D3/LuaSnip",		-- LuaSnip : Lua でスニペットを使用
+		},
+	},
 }

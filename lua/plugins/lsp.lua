@@ -22,6 +22,7 @@ return {
 			"hrsh7th/cmp-vsnip",	-- cmp-vsnip : vim-vsnip のスニペットを使用
 			"L3MON4D3/LuaSnip",		-- LuaSnip : Lua でスニペットを使用
 			"onsails/lspkind-nvim",	-- lspkind-nvim : LSP の種類を表示
+			"rafamadriz/friendly-snippets",
 		}
 	},
 	{

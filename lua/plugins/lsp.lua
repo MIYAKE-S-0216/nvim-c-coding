@@ -24,4 +24,14 @@ return {
 			"onsails/lspkind-nvim",	-- lspkind-nvim : LSP の種類を表示
 		}
 	},
+	{
+		'nvimdev/lspsaga.nvim',
+		config = function()
+			require('lspsaga').setup({})
+		end,
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter', -- optional
+			'nvim-tree/nvim-web-devicons',     -- optional
+		}
+	},
 }

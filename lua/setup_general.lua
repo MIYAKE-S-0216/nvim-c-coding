@@ -43,7 +43,7 @@ opt.ignorecase = true 	-- 検索時の大文字小文字の無視 : 有効
 opt.smarttab = true		-- スマートタブ : 有効
 opt.breakindent = true	-- 折り返し時のインデント : 有効
 opt.wrap = true 		-- 折り返し : 有効
-opt.helplang = 'ja', 'en'	-- ヘルプ言語 : 日本語、英語
+opt.helplang = 'ja'		-- ヘルプ言語 : 日本語、英語
 opt.updatetime = 300	-- アップデート時間 : 300ms
 opt.showtabline = 4		-- タブラインの表示 : 常に表示
 opt.clipboard:append({ "unnamed", "unnamedplus" })	-- クリップボードの設定 : システムクリップボードを使用
@@ -51,4 +51,12 @@ opt.signcolumn = 'yes'	--行数表示の横に余白を追加
 opt.hidden = true		-- バッファを隠すことができる
 opt.swapfile = false	-- スワップファイルを生成しない
 
-opt.guifont="Cica:h16"
+if vim.fn.has("win32")==1 then
+	-- windows用の設定
+	opt.guifont="UbuntuSansMono NFM:h16"
+	opt.guifontwide="BIZ UDゴシック:h16"
+elseif vim.fn.has("wsl")==1 then
+	-- wsl2用の設定
+else
+	-- その他（linuxやmacOS）用の設定
+end

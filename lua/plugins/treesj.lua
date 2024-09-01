@@ -1,15 +1,14 @@
 return {
-	{
-		--[[
-		treesj:
-		階層構造の実装を一行にまとめたり改行展開したりできる
-		--]]
-		'Wansmer/treesj',
-		keys = { '<space>m', '<space>j', '<space>s' },
-		dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
-		config = function()
-			require('treesj').setup({--[[ your config ]]})
-		end,
+	'Wansmer/treesj',	-- treesj
+	keys = {	-- キーマッピング
+		'<space>m',
+		'<space>j',
+		'<space>s'
 	},
+	dependencies = {	-- treesj に必要なプラグイン
+		'nvim-treesitter/nvim-treesitter' }, -- nvim-treesitter
+	config = function()	-- treesj の設定
+		require('treesj').setup({--[[ your config ]]})
+	end,
 }
 

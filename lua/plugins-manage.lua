@@ -1,6 +1,14 @@
--- Example using a list of specs with the default options
---vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
---vim.g.maplocalleader = "\\" -- Same for `maplocalleader`
-
-require("lazy").setup("plugins", {
+-- Lazy.nvim を使用してプラグインを管理
+require("lazy").setup({
+    -- プラグインのリスト
+    -- プラグインを追加する場合は、ここに記述
+    -- プラグインを無効化する場合は、コメントアウト
+	{ import = "plugins.base"		},
+	--{ import = "plugins.copilot"	},
+	--{ import = "plugins.gen_tags"	},
+	{ import = "plugins.noice"		},
+	{ import = "plugins.lsp"		},
+	{ import = "plugins.markdown_preview"	},
+	{ import = "plugins.treesitter"	},
+	{ import = "plugins.treesj"	},
 })

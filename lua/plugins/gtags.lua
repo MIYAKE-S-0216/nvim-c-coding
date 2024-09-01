@@ -1,9 +1,3 @@
 return {
-	{
-		--[[
-		gtags.vim:
-		タグジャンプ
-		--]]
-		"vim-scripts/gtags.vim",
-	},
+	"vim-scripts/gtags.vim",	-- gtags.vim
 }

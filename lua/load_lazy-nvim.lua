@@ -10,3 +10,16 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
+
+local opts = {
+	defaults = {
+		lazy = true,
+	},
+	performance = {
+		cache = {
+			enabled = true,
+		},
+	},
+}
+
+require('lazy').setup('plugins', opts)

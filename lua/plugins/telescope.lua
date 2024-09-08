@@ -26,6 +26,7 @@ return {
 			set("n", ",b",		builtin.buffers,	opts)
 			set("n", ",f",		builtin.jumplist,	opts)
 			set("n", "lg",		builtin.live_grep,	opts)
+			set("n", ",l",		builtin.current_buffer_fuzzy_find,	opts)
 
 			require("telescope").load_extension "file_browser";
 			--require("telescope").load_extension "memo";

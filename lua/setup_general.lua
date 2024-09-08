@@ -60,5 +60,3 @@ elseif vim.fn.has("wsl")==1 then
 else
 	-- その他（linuxやmacOS）用の設定
 end
-
-vim.g_nvim_tree_respect_buf_cwd = 1

@@ -60,6 +60,16 @@ return {
 			"BufReadPre",
 			"BufNewFile",
 		},
+
+		config = function()
+			local set = vim.keymap.set
+			local opts = { noremap=true, silent=true }	-- オプションの設定
+			vim.api.nvim_set_keymap('n', '<C-]>',	'<cmd>lua vim.lsp.buf.declaration()<CR>',		opts)	-- 宣言にジャンプ
+			-- vim.api.nvim_set_keymap('n', '<C-j>',		'<cmd>lua vim.lsp.buf.definition()<CR>',		opts)	-- 定義にジャンプ
+			-- vim.api.nvim_set_keymap('n', '<C-k>',		'<cmd>lua vim.lsp.buf.references()<CR>',		opts)	-- 参照を検索
+			vim.api.nvim_set_keymap('n', 'gi',		'<cmd>lua vim.lsp.buf.implementation()<CR>',	opts)	-- 実装にジャンプ
+			--vim.api.nvim_set_keymap('n', 'K',		'<cmd>lua vim.lsp.buf.hover()<CR>',				opts)	-- ホバー
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",

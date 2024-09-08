@@ -5,10 +5,9 @@ return {
 		cmd = {
 			"Ag",
 		},
-
 		init = function ()
 			local set = vim.keymap.set
 			set('n', 'S', ':Ag ', {});
-		end
+		end,
 	},
 }

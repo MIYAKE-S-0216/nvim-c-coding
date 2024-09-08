@@ -1,3 +1,6 @@
 return {
-	"github/copilot.vim",	-- GitHub Copilot
+	"github/copilot.vim",
+	event = {
+		"InsertEnter",
+	},
 }

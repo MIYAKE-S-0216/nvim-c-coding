@@ -3,8 +3,8 @@ return {
 	{
 		"shellRaining/hlchunk.nvim",
 		event = {
-			"BufReadPre", -- バッファを読み込む前
-			"BufNewFile" -- 新しいファイルを開く前
+			"BufReadPre",
+			"BufNewFile",
 		},
 		config = function()
 			require("hlchunk").setup({

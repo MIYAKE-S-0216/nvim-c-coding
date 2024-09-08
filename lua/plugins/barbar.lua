@@ -7,8 +7,8 @@ return {
 			"BufNewFile",
 		},
 		dependencies = {
-			'lewis6991/gitsigns.nvim', -- オプション: git を使用する場合
-			'nvim-tree/nvim-web-devicons', -- オプション: アイコンを使用する場合
+			'lewis6991/gitsigns.nvim',
+			'nvim-tree/nvim-web-devicons',
 		},
 		init = function()
 			vim.g.barbar_auto_setup = false -- barbar.nvim の自動設定を無効化
@@ -31,12 +31,5 @@ return {
 			set("n", "<A-p>", "<Cmd>BufferPin<CR>")
 			set("n", "<A-c>", "<Cmd>BufferClose<CR>")
 		end,
-		opts = {
-			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will be use the default:
-			-- animation = true,
-			-- insert_at_start = true,
-			-- ...etc.
-		},
-		version = '^1.0.0', -- バージョンが 1.0.0 以上の場合にのみ読み込む
 	},
 }

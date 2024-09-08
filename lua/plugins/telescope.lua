@@ -2,27 +2,33 @@ return {
 	-- telescope.nvim: ファジーファインダーを提供するプラグイン
 	{
 		'nvim-telescope/telescope.nvim',
-		branch = '0.1.x', -- ブランチ
-		dependencies = {
-			'nvim-lua/plenary.nvim', -- plenary.nvim
-			'sharkdp/fd', -- fd
-			'BurntSushi/ripgrep', -- ripgrep
-			'nvim-telescope/telescope-file-browser.nvim', -- telescope-file-browser.nvim
-		},
 		keys = {
 			{ "<C-p>", mode = "n", },
-			{ "<leader>fg", mode = "n", },
 			{ ",b", mode = "n", },
 			{ ",f", mode = "n", },
-			-- { "<Leader>fh", mode = "n", },
+			{ "lg", mode = "n", },
+		},
+		cmd = {
+			"Telescope",
+		},
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'sharkdp/fd',
+			'BurntSushi/ripgrep',
+			'nvim-telescope/telescope-file-browser.nvim',
+			--'delphinus/telescope-memo.nvim',
 		},
 		config = function ()
 			local builtin = require("telescope.builtin")
 			local set = vim.keymap.set
-			set("n", "<C-p>",	builtin.find_files, {})
-			set("n", ",b",		builtin.buffers, {})
-			set("n", ",f",		builtin.jumplist, { silent = true, })
+			local opts = { silent = true, }
+			set("n", "<C-p>",	builtin.find_files,	opts)
+			set("n", ",b",		builtin.buffers,	opts)
+			set("n", ",f",		builtin.jumplist,	opts)
+			set("n", "lg",		builtin.live_grep,	opts)
+
 			require("telescope").load_extension "file_browser";
+			--require("telescope").load_extension "memo";
 		end
 		--[[ config = function()
 			require("telescope").setup {
@@ -46,17 +52,12 @@ return {
 	}, ]]
 
 	-- telescope-all-recent.nvim: 最近開いたファイルを表示するプラグイン
-	--[[ {
+	{
 		"prochri/telescope-all-recent.nvim",
 		dependencies = {
 			"nvim-telescope/telescope.nvim", -- telescope.nvim
 			"kkharji/sqlite.lua", -- sqlite.lua
 			"stevearc/dressing.nvim", -- dressing.nvim
 		},
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-	}, ]]
+	},
 }

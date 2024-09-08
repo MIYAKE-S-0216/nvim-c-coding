@@ -8,14 +8,14 @@ return {
 		},
 		dependencies = {
 			{
-				"junegunn/fzf", -- fzf
+				"junegunn/fzf",
 				run = function()
-					vim.fn["fzf#install"]() -- fzf をインストール
+					vim.fn["fzf#install"]()
 				end
 			},
 			{
-				'nvim-treesitter/nvim-treesitter', -- nvim-treesitter
-				run = ':TSUpdate', -- nvim-treesitter を更新'
+				'nvim-treesitter/nvim-treesitter',
+				run = ':TSUpdate',
 			},
 		}
 	},

@@ -1,3 +1,7 @@
 return {
-	"jsfaint/gen_tags.vim",	-- gen_tags.vim
+	"jsfaint/gen_tags.vim",
+	event = {
+		"BufReadPre",
+		"BufNewFile",
+	},
 }

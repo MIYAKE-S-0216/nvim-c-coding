@@ -7,13 +7,13 @@ return {
 			"BufNewFile",
 		},
 		dependencies = {
-			'nvim-tree/nvim-web-devicons', -- アイコンを使用する場合
+			'nvim-tree/nvim-web-devicons',
 		},
 		opts = {
 			options = {
-				icons_enabled = true, -- アイコンを有効化
-				theme = 'ayu_mirage' -- テーマの設定
-			}
+				icons_enabled = true,
+				theme = 'ayu_mirage'
+			},
 		}
 	},
 }

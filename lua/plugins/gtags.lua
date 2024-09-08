@@ -1,3 +1,3 @@
 return {
-	"vim-scripts/gtags.vim",	-- gtags.vim
+	"vim-scripts/gtags.vim",
 }
